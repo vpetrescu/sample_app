@@ -2,50 +2,27 @@ require 'spec_helper'
 
 describe "StaticPages" do
   let(:base_name) {"Ruby on Rails Tutorial Sample App"}
+  subject{ page }
   describe "Home Page" do
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
-    end
-    it "should have the right title" do
-      visit '/static_pages/home'
-      expect(page).to have_title("#{base_name}")
-    end
-    it "should not have the home title" do
-      visit '/static_pages/home'
-      expect(page).not_to have_title("Home")
-    end
+    before { visit root_path }
+    it { should have_content('Sample App') }
+    it { should have_title("#{base_name}") }
+    it { should_not have_title("Home")  }
   end
   describe "Help page" do
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-    it "should have the right title" do
-      visit '/static_pages/help'
-      expect(page).to have_title("#{base_name} | Help")
-    end
+    before { visit help_path }
+    it { should have_content('Help') }
+    it { should have_title("#{base_name} | Help") }
   end
   describe "About page" do
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content("About Us")
-    end
-    it "should have the right title" do
-      visit '/static_pages/about'
-      expect(page).to have_title("#{base_name} | About Us")
-    end
+    before { visit about_path }
+    it { should have_content("About Us") }
+    it { should  have_title("#{base_name} | About Us") }
   end
-  describe "Contacts page" do
-    it "should have the content 'Contacts'" do
-      visit '/static_pages/contacts'
-      expect(page).to have_content("Contacts")
-    end
-    it "should have the right title" do
-      visit '/static_pages/contacts'
-      expect(page).to have_title("#{base_name} | Contacts")
-    end
+  describe "Contact page" do
+    before { visit contact_path }
+    it {should have_content("Contact") }
+    it {should have_title("#{base_name} | Contact") }
   end
-
 
 end
